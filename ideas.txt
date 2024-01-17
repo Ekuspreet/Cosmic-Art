@@ -1,0 +1,22 @@
+Software Name : SpotLight.
+Idea: Create Account and post your projects:
+Common Features:
+-Account Creation
+-post uploading
+-post edditing
+-post removing
+
+post contains :
+1- Project Idea
+2- Project Description
+3- Project Image
+4- [Users can contribute to techstack]
+TechStack [WE NEED TO MAKE A FILE OF OPTIONS TO SELECT FROM AND STORE]
+5- TechStack Logos
+6- Click to share link
+
+Account :
+Details
+Skills
+List of posts
+CRUD On posts

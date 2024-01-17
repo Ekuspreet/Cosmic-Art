@@ -1,0 +1,68 @@
+#backbtn{
+    border: 2px solid var(--negative);
+    transition: color,background-color 0.4s ease ;
+    background-color: var(--white);
+    color: var(--negative);
+}
+#backbtn:hover{
+    background-color: var(--negative);
+    color: var(--white);
+    
+}
+.bodycontainer{
+    display: flex;
+    width: 100%;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 1em;
+}
+
+.logincontainer{
+    background-color: #ffffff;
+    width: 70%;
+    /* height: ; */
+
+    border-radius: 1em;
+    overflow: hidden;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+.logincontainer heading{
+    margin-bottom: 1em;
+}
+
+.logincontainer img{
+    height: 30em;
+    width: 35em;    
+    object-fit: cover;
+}
+.logincontainer form{
+    gap: 1em;
+    /* background-color: var(--contrast); */
+    width: 100%;
+    display: flex;
+    /* background-color: aquamarine; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.logincontainer input{
+    width: 60%;
+}
+.logincontainer input[type = "submit"]{
+    border: 1px solid var(--positive);
+    /* background-color: var(--positive); */
+    color: var(--positive);
+}
+.logincontainer input[type = "submit"]:hover{
+    background-color: var(--positive);
+    color: var(--white);
+    cursor: pointer;
+}
+.logincontainer a{
+    color: var(--colour);
+}
+.logincontainer a:hover{
+    text-decoration: underline  ;
+}

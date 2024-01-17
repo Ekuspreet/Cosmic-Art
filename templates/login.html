@@ -1,0 +1,37 @@
+{% extends 'root.html' %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename = '/styles/globals.css')}}">
+
+<link rel="stylesheet" href="{{ url_for('static',filename = '/styles/login.css')}}">
+    
+{% endblock %}
+    {% block navigation %}
+        <heading>Welcome Back to <bname>Spot Light</bname> !</heading> 
+    {% endblock %}
+    {% block actions %}
+  
+    <a href="{{ url_for('landing')}}">
+        <button id = "backbtn">
+           Go Back To Homepage
+        </button>
+    </a> 
+
+    {% endblock %}
+{% block content %}
+    <div class="bodycontainer">
+       <div class="logincontainer">
+            <img src="{{ url_for('static', filename = '/public/loginimg.jpeg')}}" alt="" id = "loginimg">
+            <form action="#" class="formcontainer" method = "post">
+                <heading>Login</heading>
+                <input type="email" name = "email" placeholder="&#128231;  Email" >
+                <input type="password" name = "password" placeholder="&#128273; Password" > 
+                <input type="submit" value="Log In">
+                {% if message %}
+                <div class="{{ type }}" onclick="this.style.display = 'None' " > {{ message }}</div>
+                    
+                {% endif %}
+                <a href="{{ url_for('signup') }}">New to SpotLight? Sign Up </a>
+            </form>
+       </div> 
+    </div>
+{% endblock %}

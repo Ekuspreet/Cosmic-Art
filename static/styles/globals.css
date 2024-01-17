@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Exo';
+    src: url('../fonts/Exo/Exo.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NotoSans';
+    src: url('../fonts/Noto_Sans/NotoSans.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Sarala';
+    src: url('../fonts/Sarala/Sarala-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'handwriting';
+    src: url('../fonts/script/GreatVibes-Regular.ttf') format('truetype');
+}
+
+:root{
+
+    --colour : #8c52ff;
+    --negative : #d93e3e;
+    --positive : #70c275;
+    --contrast : #ffc74f;
+
+    --white : #f3f2f2;
+    --glass : #27272723;
+    --glass-white : #f3f2f223;
+    --black : #272727;
+
+
+    --xxl : clamp(1rem, 10vw, 1.8rem);
+    --xl : clamp(0.8rem, 8vw, 1.2rem);
+    --sm : clamp(0.5rem, 5vw, 1rem);
+    
+
+    --content : "NotoSans","sans-serif";
+    --heading : "Exo", "sans-serif";
+    --special : "Sarala", "sans-serif";
+    --script : "handwriting", "sans-serif";
+}
+*{
+    
+    text-decoration: none;
+    outline: none;
+    border:none ;
+    background-color: transparent;
+    color: var(--black);
+    font-size: var(--sm);
+    font-family: var(--content);
+}
+body{
+    background-color: var(--white);
+}
+heading{
+    /* display: inline; */
+    font-family: var(--heading);
+    font-weight: 800;
+    font-size: var(--xxl);
+}
+bname{
+    /* display: inline; */
+    font-family: var(--heading);
+    font-weight: 800;
+    font-size: var(--xxl);
+    color: var(--colour);    
+}
+.error{
+    cursor: pointer;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    font-weight: 700;
+    color: var(--white);
+    background-color: var(--negative);
+}
+.success{
+    cursor: pointer;
+
+    border-radius: 0.5em;
+    padding: 0.5em;
+    font-weight: 700;
+    color: var(--white);
+    background-color: var(--positive);
+}
+input{
+    border: 1px solid var(--glass);
+    font-family: var(--special);
+    font-weight: 600;
+    font-size: var(--xl);
+    border-radius: 1em;
+    height: 40px;
+    color: var(--black);
+    padding: 2px 1em ;
+}
+input:focus{
+    border: 1px solid var(--black);
+}
+
+input::placeholder{
+    font-family: var(--special);
+
+}
+
+
+.navbar{
+    display: flex;
+    /* background-color: var(--c); */
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid var(--black) ; */
+    flex-wrap:wrap;
+}
+
+.navbar .navigation, .navbar .buttons{
+
+    display: flex;
+    gap: 10px;
+
+}
+/* .navbar .navigation{
+} */
+
+.navbar .buttons{
+
+    margin-right: 15px;
+    
+}
+.navbar .buttons a button{
+    /* font-family: var(); */
+    border-radius: 10px;
+    font-size: var(--xl);
+    padding: 7px 21px;
+    font-weight: 600;
+    /* background-color: transparent; */
+    border: 2px solid var(--colour);
+    cursor: pointer;
+    color: var(--colour);
+    transition: color,background-color 0.4s ease ;
+
+}
+.navbar .buttons a button:hover{
+    background-color: var(--colour);
+    color: var(--white);
+}
+.navbar .navigation a button{
+    font-size: var(--xl);
+    padding: 7px;
+    transition: color 0.4s ease;
+}
+.navbar .navigation a button:hover{
+    color: var(--colour);
+}
+#signup{
+    background-color: var(--colour);
+    color: var(--white);
+}
+.currentpage{
+    color: var(--colour);
+}
+.navbar .brand img{ 
+    
+    width: 200px;
+}

@@ -1,0 +1,39 @@
+{% extends 'root.html' %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static',filename = '/styles/globals.css')}}">
+
+<link rel="stylesheet" href="{{ url_for('static',filename = '/styles/login.css')}}">
+    
+{% endblock %}
+    {% block navigation %}
+        <heading>Welcome to <bname>Spot Light</bname> !</heading> 
+    {% endblock %}
+    {% block actions %}
+  
+    <a href="{{ url_for('landing')}}">
+        <button id = "backbtn">
+           Go Back To Homepage
+        </button>
+    </a> 
+
+    {% endblock %}
+    {% block content %}
+    <div class="bodycontainer">
+       <div class="logincontainer">
+            <img src="{{ url_for('static', filename = '/public/signup.jpeg')}}" alt="" id = "loginimg">
+            <form action="#" class="formcontainer" method="post">
+                <heading>Sign Up </heading>
+                <input type="email" required name = "email" placeholder="&#128231;  Email" >
+                <input type="text"  required name = "username" placeholder="&#127991;  Name" >
+                <input type="password"  required name = "password" placeholder="&#128273; Password" > 
+                <input type="text"  required name = "cnfpassword" placeholder="&#128273; Confirm Password" > 
+                {% if message %}
+                <div class="{{ type }}" onclick="this.style.display = 'None' " > {{ message }}</div>
+                    
+                {% endif %}
+                <input type="submit" value="Sign Up">
+                <a href="{{ url_for('login') }}">Already A Registered User? Log In </a>
+            </form>
+       </div> 
+    </div>
+{% endblock %}
