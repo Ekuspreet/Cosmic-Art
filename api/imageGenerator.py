@@ -18,7 +18,7 @@ def toB64(image_path):
             return b64_encoded.decode("utf-8")
 
 
-api_key = "SG_acebee5324e7248c"
+api_key = "SG_3dd20dabed54c3c2"
 url = "https://api.segmind.com/v1/ssd-canny"
 prompts = {"Ancient": "Transform the given image into the Ancient era, incorporating classical architecture reminiscent of Greek or Roman structures, mythical elements such as dragons or gods, and clothing styles characteristic of ancient civilizations.",
     "Medieval": "Adapt the existing image to the Medieval era, introducing knights in armor, medieval castle structures with Gothic architecture, heraldic symbols, and a landscape that conveys the ambiance of medieval times.",
