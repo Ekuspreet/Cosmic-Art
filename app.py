@@ -63,7 +63,7 @@ def signup():
         return redirect(url_for('homepage', username = name, email = email))
     return render_template('signup.html')
 
-@app.route("/profile/<username>/<id>")
+@app.route("/profile/<username>,id=<id>")
 def homepage(username,id = "guestid"):
     user = User.query.filter_by(name = username, id = id).first()
     if not user:
