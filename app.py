@@ -76,9 +76,10 @@ def homepage(username,id = "guestid"):
 @app.route("/experience", methods=["GET","POST"])
 def experience():
     if request.method == "POST":
+        images = {'France':["Dance-at-Le-moulin-de-la-Galette-Bal-du-moulin-de-la-Galette-by-Pierre-Auguste-Renoir","Impression-Sunrise-by-Claude-Monet", 'samothrace-495421_1920-1536x1022', 'The-Card-Players-by-Paul-Cezanne']}
         era = request.form.get("selected_era")
         country = request.form.get("selected_country")
-        image = generateImage(country, era, "Best-Mythology-Art.avif")
+        image = generateImage(country, era, "Best-Mythology-Art.jpg")
         image.save("static/Images/Generated/harnoor.jpg")
     
     return render_template('image.html')

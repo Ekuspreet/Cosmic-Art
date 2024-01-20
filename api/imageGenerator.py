@@ -31,7 +31,7 @@ prompts = {"Ancient": "Transform the given image into the Ancient era, incorpora
 def generateImage(country, era, file_name):
     prompt = prompts[era]
     data = {
-    "image": toB64(f'static/images/{country}/{file_name}'),
+    "image": toB64(f'static/images/countries/{country}/{file_name}'),
     "prompt": f'{prompt}, {country} style',
     "negative_prompt": "low quality, ugly, painting",
     "samples": 1,
