@@ -227,7 +227,24 @@
               </svg>
             </div>
           </button>
-          
+          <form action='/experience' method="POST">
+            <h2>Select Country:</h2>
+            <select name="selected_country">
+                {% for country in countries %}
+                    <option value="{{ country }}">{{ country }}</option>
+                {% endfor %}
+            </select>
+    
+            <h2>Select Era:</h2>
+            <select name="selected_era">
+                {% for era in eras %}
+                    <option value="{{ era }}">{{ era }}</option>
+                {% endfor %}
+            </select>
+    
+            <br>
+            <input type="submit" value="Submit">
+        </form>
         <!-- Start -->
     </div>
 

@@ -23,9 +23,10 @@ api_key = "SG_acebee5324e7248c"
 url = "https://api.segmind.com/v1/ssd-canny"
 
 def generateImage(country, era, file_name):
+    prompt = ""
     data = {
     "image": toB64(f'static/{country}/{file_name}'),
-    "prompt": f"imagine this image painted in {country} style in {era} era",
+    "prompt": prompt,
     "negative_prompt": "low quality, ugly, painting",
     "samples": 1,
     "scheduler": "UniPC",
