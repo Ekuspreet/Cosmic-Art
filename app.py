@@ -13,7 +13,7 @@ import os
 #-----------------------------------
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "KCQIRRT#@#@"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1@127.0.0.1/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1@localhost/postgres'
 
 
 db = SQLAlchemy(app)
