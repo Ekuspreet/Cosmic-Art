@@ -5,6 +5,7 @@
 from flask import Flask,render_template,redirect,url_for,request, flash
 from api.imageGenerator import generateImage
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 #-----------------------------------
 # Initialization 
@@ -68,14 +69,13 @@ def homepage(username,id = "guestid"):
     user = User.query.filter_by(name = username, id = id).first()
     if not user:
         return 'User {username} does not exist!!'
-    return render_template('profile.html', username = username, tickets = 10)
-@app.route('/exper')
-def experienceSlide():
-    return render_template('experience-slide.html')
-    
     countries = ['France', 'Greece', 'India', 'Japan', 'Russia']
     era = ['Ancient', 'Medieval', 'Renaissance', 'Futuristic', 'Contemporary', 'Modern']
     return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era)
+
+@app.route('/exper')
+def experienceSlide():
+    return render_template('experience-slide.html')
 
 @app.route("/experience", methods=["GET","POST"])
 def experience():
