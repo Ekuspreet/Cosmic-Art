@@ -40,7 +40,7 @@ def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        user = User.query.filter_by(email = email, password = password )
+        user = User.query.filter_by(email = email, password = password ).first()
         if not user:
             return render_template('login.html',message = "Incorrect Email or Password", type = 'error')
         return redirect(url_for('homepage',username = user.name,id = user.id))
