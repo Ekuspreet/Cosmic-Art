@@ -2,6 +2,7 @@
 #-----------------------------------
 # Import 
 #-----------------------------------
+
 from flask import Flask,render_template,redirect,url_for,request, flash
 from api.imageGenerator import generateImage
 from api.uploadImage import upload_to_imgbb
@@ -10,13 +11,13 @@ import os
 #-----------------------------------
 # Initialization 
 #-----------------------------------
-DATA_BASE = "database.db"
-
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{DATA_BASE}'
-
 app.config['SECRET_KEY'] = "KCQIRRT#@#@"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1@127.0.0.1/postgres'
+
+
 db = SQLAlchemy(app)
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -56,7 +57,7 @@ def signup():
         cnf = request.form["cnfpassword"]
         if not password == cnf:
             return render_template('signup.html', message = "Passwords Do Not Match!", type = "error")
-        if User.query.filter_by(email=email).first():
+        if User.query.filter_by(email= email).first():
             return render_template('signup.html', message = "Email already registered!", type = "error")
         new_user = User(email=email, name=name, password=password)
         db.session.add(new_user)
