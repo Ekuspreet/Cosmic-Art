@@ -2,7 +2,7 @@
 #-----------------------------------
 # Import 
 #-----------------------------------
-from flask import Flask,render_template,redirect,url_for,request
+from flask import Flask,render_template,redirect,url_for,request, flash
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -50,13 +50,13 @@ def login():
 def signup():
     if request.method == "POST":
         email = request.form["email"]
-        if User.query.filter_by(email=email).first():
-            return render_template('signup.html', message = "Account Is Already Created, Please Log In", type = 'error')
         name = request.form["username"]
         password = request.form["password"]
         cnf = request.form["cnfpassword"]
         if not password == cnf:
             return render_template('signup.html', message = "Passwords Do Not Match!", type = "error")
+        if User.query.filter_by(email=email).first():
+            return render_template('signup.html', message = "Email already registered!", type = "error")
         new_user = User(email=email, name=name, password=password)
         db.session.add(new_user)
         db.session.commit()
