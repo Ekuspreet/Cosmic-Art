@@ -22,6 +22,7 @@ class User(db.Model):
     email = db.Column(db.String(150), unique = True, nullable = False)
     password = db.Column(db.String(50), nullable = False)
     name = db.Column(db.String(50),default = "Guest" )
+    # tickets = db.Column(db.Integer, default = 3)
 with app.app_context():
     db.create_all()
 
@@ -40,8 +41,8 @@ def login():
         password = request.form["password"]
         user = User.query.filter_by(email = email, password = password ).first()
         if not user:
-            return render_template('login.html',message = "Incorrect Email or PassWord", type = 'error')
-        return redirect(url_for('homepage',username = user.name))
+            return render_template('login.html',message = "Incorrect Email or Password", type = 'error')
+        return redirect(url_for('homepage',username = user.name,email = user.email))
             
     return render_template('login.html')
 
@@ -59,14 +60,17 @@ def signup():
         new_user = User(email=email, name=name, password=password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('homepage', username = name))
+        return redirect(url_for('homepage', username = name, email = email))
     return render_template('signup.html')
 
-@app.route("/profile/<username>")
-def homepage(username):
+@app.route("/profile/<username>/<email>")
+def homepage(username,email = "guestmail"):
+    user = User.query.filter_by(name = username, email = email).first()
+    if not user:
+        return 'User {username} does not exist!!'
     return f'Username = {username}'
 #-----------------------------------
 # Running the app
 #-----------------------------------
 if __name__ == '__main__':
-    app.run(debug=True,port=5340,host='0.0.0.0')
+    app.run(debug=True,port=5001)

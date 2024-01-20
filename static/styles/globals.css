@@ -163,3 +163,20 @@ input::placeholder{
     
     width: 200px;
 }
+.content{
+    margin: 10px;
+    color: var(--white);
+    background-image: url(/static/images/image.jpg);
+    text-align: center;
+    font-family: var(--special);
+    background-size: cover;
+}
+.text{
+    font-size: 450%;
+    color: #f3f2f2;
+    background-color: #000000;
+    margin-left: 200px;
+    margin-right: 200px;
+    opacity: 0.6;
+}
+

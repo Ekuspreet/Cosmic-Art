@@ -14,7 +14,7 @@
     width: 100%;
     /* align-items: center; */
     justify-content: center;
-    margin-top: 1em;
+    margin-top: 3em;
 }
 
 .logincontainer{
@@ -54,11 +54,13 @@
     border: 1px solid var(--positive);
     /* background-color: var(--positive); */
     color: var(--positive);
+    transition: all 0.4s ease;
 }
 .logincontainer input[type = "submit"]:hover{
     background-color: var(--positive);
     color: var(--white);
     cursor: pointer;
+
 }
 .logincontainer a{
     color: var(--colour);

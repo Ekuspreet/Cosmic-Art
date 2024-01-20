@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="../static/public/slogo.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spot Light</title>
+    <title>Cosmic Art</title>
 
     
     {% block styles %}
@@ -31,10 +31,9 @@
         {% block navbar %}
 
 
-        <div class="brand">
-            <img src="{{ url_for('static', filename = './public/1.png')}}" 
-            alt="Spotlight Logo"
-            >
+        <div class="brand"><a href="">
+            <bname>Cosmic Art</bname></a>
+            
         </div>
         <div class="navigation">
             {% block navigation %}
@@ -44,16 +43,16 @@
                 </button>
             </a><a href="">
                 <button class = "button">
-                   Projects
+                   Collections
                 </button>
             </a><a href="">
                 <button class = "button">
-                   About
+                   Pricing
                 </button>
             </a> 
             </a><a href="">
                 <button class = "button">
-                   Contact
+                   About
                 </button>
             </a> 
             {% endblock navigation%}
@@ -80,30 +79,14 @@
     <div class="content">
     {% block content %}
     <br><br><br>
-        Content Here
-        Will Fill Later, Functionality FIRST
+    <div class="text">
+        Presenting the <br> Space Time <br> Continuum of Art!
+    </div>
     {% endblock content%}
 </div>
     {% endblock body%}
 </body>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Get all buttons with class 'navicon'
-        const buttons = document.querySelectorAll('.button');
-        console.log(buttons)
-        // Add click event listener to each button
-        buttons.forEach(button => {
-          button.addEventListener('click', () => {
-            // Remove 'selected' class from all buttons
-            buttons.forEach(b => b.classList.remove('currentpage'));
-      
-            // Add 'selected' class to the clicked button
-            button.classList.add('currentpage');
-            });
-        });
-      });
-</script>
 
 
 </html>
