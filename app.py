@@ -2,20 +2,24 @@
 #-----------------------------------
 # Import 
 #-----------------------------------
-from flask import Flask,render_template,redirect,url_for,request, flash
 
+from flask import Flask,render_template,redirect,url_for,request, flash
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import IntegrityError
+
+
+
 
 #-----------------------------------
 # Initialization 
 #-----------------------------------
-DATA_BASE = "database.db"
-
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = f'sqlite:///{DATA_BASE}'
-
 app.config['SECRET_KEY'] = "KCQIRRT#@#@"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1@127.0.0.1/postgres'
+
+
 db = SQLAlchemy(app)
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
@@ -39,7 +43,7 @@ def login():
     if request.method == "POST":
         email = request.form["email"]
         password = request.form["password"]
-        user = User.query.filter_by(email = email, password = password ).first()
+        user = User.query.filter_by(email = email, password = password )
         if not user:
             return render_template('login.html',message = "Incorrect Email or Password", type = 'error')
         return redirect(url_for('homepage',username = user.name,email = user.email))
@@ -55,17 +59,21 @@ def signup():
         cnf = request.form["cnfpassword"]
         if not password == cnf:
             return render_template('signup.html', message = "Passwords Do Not Match!", type = "error")
-        if User.query.filter_by(email=email).first():
+        if User.query.filter_by(email= email).first():
             return render_template('signup.html', message = "Email already registered!", type = "error")
-        new_user = User(email=email, name=name, password=password)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for('homepage', username = name, email = email))
+        new_user = User.query.filter_by(email= email, name=name, password=password)
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for('homepage', username=name, email=email))
+        except IntegrityError:
+            db.session.rollback()
+            return render_template('signup.html', message="Email already registered!", type="error")
     return render_template('signup.html')
 
 @app.route("/profile/<username>/<email>")
 def homepage(username,email = "guestmail"):
-    user = User.query.filter_by(name = username, email = email).first()
+    user =User.query.filter_by(name = username, email = email).first()
     if not user:
         return 'User {username} does not exist!!'
     return render_template('profile.html', username = username, tickets = 3)
