@@ -64,8 +64,8 @@ def signup():
     return render_template('signup.html')
 
 @app.route("/profile/<username>/<id>")
-def homepage(username,userid = "guestmail"):
-    user = User.query.filter_by(name = username, id = userid).first()
+def homepage(username,id = "guestid"):
+    user = User.query.filter_by(name = username, id = id).first()
     if not user:
         return 'User {username} does not exist!!'
     return render_template('profile.html', username = username, tickets = 3)
