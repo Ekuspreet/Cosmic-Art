@@ -1,0 +1,17 @@
+version: '3.10.12'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: Cosmic-Art
+    entrypoint: /bin/sh
+    ports:
+      - "5000:5000"
+    working_dir: /Cosmic-Art/app                                                             
+    volumes:
+     - type: bind
+       source: ./
+       target: /Cosmic-Art/app
+    tty: true
+       
