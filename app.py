@@ -8,7 +8,23 @@ from api.imageGenerator import generateImage
 from api.uploadImage import upload_to_imgbb
 from flask_sqlalchemy import SQLAlchemy
 import stripe
+import time
+import random
+import json
 import os
+
+def read_json_file():
+    try:
+        with open('data.json', 'r') as file:
+            data = json.load(file)
+    except FileNotFoundError:
+        data = {"era": "", "country": ""}
+    return data
+
+def write_json_file(data):
+    with open('data.json', 'w') as file:
+        json.dump(data, file)
+
 #-----------------------------------
 # Initialization 
 #-----------------------------------
@@ -80,11 +96,13 @@ def homepage(username,id = "guestid"):
               'https://images.pexels.com/photos/590478/pexels-photo-590478.jpeg',
               'https://images.pexels.com/photos/236294/pexels-photo-236294.jpeg']
     era = ['Ancient', 'Medieval', 'Renaissance', 'Futuristic', 'Contemporary', 'Modern']
-    return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era, locs = cntimg)
+    
+    history_data = read_json_file()
 
+    return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era, locs = cntimg, history_data = history_data)
 
-@app.route("/experience", methods=["GET","POST"])
-def experience():
+@app.route("/experiences", methods=["GET","POST"])
+def experiences():
     country = None
     era = None
     # url_list = []
@@ -102,7 +120,30 @@ def experience():
             # imgbb_url = upload_to_imgbb(f"static/images/Generated/{i}.jpg")
             # url_list.append(imgbb_url)
     
-    return render_template('experience-slide.html', area=country, era=era, )
+    return render_template('experience-slide.html', area=country, era=era)
+
+
+
+@app.route("/experience", methods=["GET","POST"])
+def experience():
+    country = None
+    era = None
+    
+    if request.method == "POST":
+        era = request.form.get("selected_era")
+        country = request.form.get("selected_country")
+        images = [random.randint(0, 47) for _ in range(6)]
+        time.sleep(20)    
+        data = read_json_file()
+
+        # Update data with new values
+        data["era"] = era
+        data["country"] = country
+
+        # Write updated data back to JSON file
+        write_json_file(data)
+    
+    return render_template('experience-slide.html', area=country, era=era, imagelist = images)
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
