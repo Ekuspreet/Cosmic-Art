@@ -42,7 +42,7 @@ def login():
         user = User.query.filter_by(email = email, password = password ).first()
         if not user:
             return render_template('login.html',message = "Incorrect Email or Password", type = 'error')
-        return redirect(url_for('homepage',username = user.name,email = user.email))
+        return redirect(url_for('homepage',username = user.name,id = user.id))
             
     return render_template('login.html')
 
@@ -63,9 +63,9 @@ def signup():
         return redirect(url_for('homepage', username = name, email = email))
     return render_template('signup.html')
 
-@app.route("/profile/<username>/<email>")
-def homepage(username,email = "guestmail"):
-    user = User.query.filter_by(name = username, email = email).first()
+@app.route("/profile/<username>/<id>")
+def homepage(username,userid = "guestmail"):
+    user = User.query.filter_by(name = username, id = userid).first()
     if not user:
         return 'User {username} does not exist!!'
     return render_template('profile.html', username = username, tickets = 3)
