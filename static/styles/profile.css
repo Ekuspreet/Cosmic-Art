@@ -31,12 +31,19 @@ tr:hover {
     background-color: #e0e0e0;
     transition: background-color 0.3s ease;
 }
-
+.content{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
 .container{
+  align-self: stretch;
     background:none;
     display: flex;
     gap: 1em;
     margin: 1em;
+
 }
 .container, .start{
     height: 30em;
@@ -64,7 +71,7 @@ tr:hover {
     top: 0;
 }
 .start{
-    flex: 2;
+    flex: 1;
 }
 .start sch{
     font-size: calc(var(--xl)*1.5);
@@ -82,13 +89,14 @@ tr:hover {
 .start fch{
     font-size: inherit;
     color: inherit;
-    font-family: var(--script);
+    /* font-family: var(--script); */
 }
 .start button {
     position: relative;
     padding: 15px 45px;
+    backdrop-filter: blur(10px);
     /* background: var(--white); */
-    background-color: #ffffffb3;
+    background-color: #ffffff85;
     font-size: calc(var(--xxl)*1.5);
     font-weight: 700;
     font-family: var(--content);
@@ -96,6 +104,7 @@ tr:hover {
     cursor: pointer;
     /* border: 1px solid #fec195; */
     border-radius: 0.5em;
+    transition: all 0.5s ease;
     
     /* filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2)); */
   }
@@ -209,4 +218,43 @@ tr:hover {
       transform: rotate(0);
     }
   }
-  
+.options{
+  padding: 2em;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 1em;
+  border-radius: 1em;
+  border: 3px solid var(--contrast);
+}
+ 
+.options .custom-form{
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.options span{
+  font-size: var(--xxl);
+}
+.country input, .era input{
+  /* visibility: hidden; */
+  display: none;
+}
+.country{
+  display: inherit;
+  flex-direction: column;
+}
+
+.radio-container span{
+  margin: 0.1em;
+  padding: 0.1em 1em;
+  display: inline-block;
+  color: var(--black);
+  width: 20%;
+  height: 1.5em;
+  /* border: 1px solid white; */
+
+}
