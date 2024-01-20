@@ -74,9 +74,6 @@ def homepage(username,id = "guestid"):
     era = ['Ancient', 'Medieval', 'Renaissance', 'Futuristic', 'Contemporary', 'Modern']
     return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era)
 
-@app.route('/exper')
-def experienceSlide():
-    return render_template('experience-slide.html')
 
 @app.route("/experience", methods=["GET","POST"])
 def experience():
@@ -86,14 +83,11 @@ def experience():
     if request.method == "POST":
         era = request.form.get("selected_era")
         country = request.form.get("selected_country")
-        image_files = {
-            "France" : ['Dance-at-Le-moulin-de-la-Galette-Bal-du-moulin-de-la-Galette-by-Pierre-Auguste-Renoir.jpg', 'Impression-Sunrise-by-Claude-Monet.jpg', 'samothrace-495421_1920-1536x1022.jpg', 'The-Card-Players-by-Paul-Cezanne.jpg', 'The-Liberty-Leading-the-People-1830-Eugene-Delacroix.jpg', 'The-Raft-of-the-Medusa-1819-Theodore-Gericault.jpg'], 
-            "Greece" : ['Best-Mythology-Art.jpg', 'Best-Mythology-Art.jpg']
-        }
-        for country, image_name_list in image_files.items():
-            for i, image_name in enumerate(image_name_list):
-                image = generateImage(country, era, image_name)
-                image.save(f"static/Images/Generated/{i}.jpg")
+        image_folder = f'static\images\countries\{country}'  # Update with the path to your image folder
+        image_files = [f for f in os.listdir(image_folder) if f.endswith(('.jpg', '.jpeg', '.png'))]
+        for i, image_name in enumerate(image_files):
+            image = generateImage(country, era, image_name)
+            image.save(f"static/Images/Generated/{i}.jpg")
     
     return render_template('experience-slide.html', area=country, era=era)
 
