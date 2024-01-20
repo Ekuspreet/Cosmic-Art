@@ -22,34 +22,20 @@
     <div class="slider">
 
         <button class="arrow left-arrow" id="left">
+            <
             <!-- <i class="fas fa-arrow-right"></i> -->
         </button>
 
         <div class="slider-container">
-            <div class="slide active" style="
-              background-image: url('url_for('static',filename = 'Generated/0.jpg');
-            "></div>
-            <div class="slide" style="
-              background-image: url('url_for('static',filename = 'Generated/1.jpg');
-            "></div>
-
-            <div class="slide" style="
-              background-image: url('url_for('static',filename = 'Generated/2.jpg');
-            "></div>
-
-            <div class="slide" style="
-              background-image: url('url_for('static',filename = 'Generated/3.jpg');
-            "></div>
-
-            <div class="slide" style="
-              background-image: url('url_for('static',filename = 'Generated/4.jpg');
-            "></div>
-
-
-         
+            <div class="slide active" style="background-image: url('{{ url_for('static', filename='Generated/0.jpg') }}')"></div>
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='Generated/1.jpg') }}')"></div>
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='Generated/2.jpg') }}')"></div>
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='Generated/3.jpg') }}')"></div>
+            <div class="slide" style="background-image: url('{{ url_for('static', filename='Generated/4.jpg') }}')"></div>
         </div>
+        
         <button class="arrow right-arrow" id="right">
-            <!-- <i class="fas fa-arrow-right"></i> -->
+            >  <!-- <i class="fas fa-arrow-right"></i> -->
         </button>
         
     </div>

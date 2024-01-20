@@ -73,26 +73,33 @@ def homepage(username,id = "guestid"):
     if not user:
         return 'User {username} does not exist!!'
     countries = ['France', 'Greece', 'India', 'Japan', 'Russia']
+    cntimg = ['https://images.pexels.com/photos/1694359/pexels-photo-1694359.jpeg',
+              'https://images.pexels.com/photos/161275/santorini-travel-holidays-vacation-161275.jpeg',
+              'https://images.pexels.com/photos/1007426/pexels-photo-1007426.jpeg',
+              'https://images.pexels.com/photos/590478/pexels-photo-590478.jpeg',
+              'https://images.pexels.com/photos/236294/pexels-photo-236294.jpeg']
     era = ['Ancient', 'Medieval', 'Renaissance', 'Futuristic', 'Contemporary', 'Modern']
-    return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era)
+    return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era, locs = cntimg)
 
 
 @app.route("/experience", methods=["GET","POST"])
 def experience():
     country = None
     era = None
-    url_list = []
+    # url_list = []
     
     if request.method == "POST":
         era = request.form.get("selected_era")
         country = request.form.get("selected_country")
-        image_folder = f'static\images\countries\{country}'  # Update with the path to your image folder
+        image_folder = f'static/images/countries/{country}'  # Update with the path to your image folder
+        if os.path.exists(image_folder):
+            print("PATH DOESNT EXIST")
         image_files = [f for f in os.listdir(image_folder) if f.endswith(('.jpg', '.jpeg', '.png'))]
         for i, image_name in enumerate(image_files):
             image = generateImage(country, era, image_name)
-            image.save(f"static/Images/Generated/{i}.jpg")
-            imgbb_url = upload_to_imgbb(f"static/Images/Generated/{i}.jpg")
-            url_list.append(imgbb_url)
+            image.save(f"static/images/Generated/{i}.jpg")
+            # imgbb_url = upload_to_imgbb(f"static/images/Generated/{i}.jpg")
+            # url_list.append(imgbb_url)
     
     return render_template('experience-slide.html', area=country, era=era, url_list = url_list)
 
