@@ -82,6 +82,8 @@ justify-content: center;
     background: radial-gradient( #33333377 0% , #33333339 60% ,#ffffffab) ,
     url(../public/startbg.jpg);
     display: flex;
+    width: 80%;
+    /* height: 6em; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -102,6 +104,7 @@ justify-content: center;
     font-family: var(--content);
     color: var(--colour);
     cursor: pointer;
+    width: 100%;
     /* border: 1px solid #fec195; */
     border-radius: 0.5em;
     transition: all 0.5s ease;
@@ -248,13 +251,41 @@ justify-content: center;
   flex-direction: column;
 }
 
+
 .radio-container span{
+  /* background-color: var(--black); */
+  overflow: hidden;
+  position: relative;
   margin: 0.1em;
   padding: 0.1em 1em;
   display: inline-block;
-  color: var(--black);
+  color: var(--contrast);
+  /* background-color: var(--black)!important; */
   width: 20%;
   height: 1.5em;
+  border-radius: 0.5em;
+  background-color: var(--black);
   /* border: 1px solid white; */
+  transition: all 0.2s ease;
+}
 
+.radio-container span img{
+  top: -8em;
+  /* background-color: var(--contrast); */
+  left: 0;
+  z-index: -1;
+  opacity: 0.5;
+  position: absolute;
+  /* object-position: cover; */
+  
+}
+
+
+
+.radio-container span:hover{
+  border: 0.5px solid var(--contrast);
+}
+
+.radio-container span:active, .radio-container input::selection{
+  background-color: var(--contrast);
 }
