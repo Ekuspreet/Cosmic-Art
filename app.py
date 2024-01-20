@@ -80,7 +80,8 @@ def experienceSlide():
 @app.route("/experience", methods=["GET","POST"])
 def experience():
     if request.method == "POST":
-        images = {'France':["Dance-at-Le-moulin-de-la-Galette-Bal-du-moulin-de-la-Galette-by-Pierre-Auguste-Renoir","Impression-Sunrise-by-Claude-Monet", 'samothrace-495421_1920-1536x1022', 'The-Card-Players-by-Paul-Cezanne']}
+        image_folder = 'path/to/your/image/folder'  # Update with the path to your image folder
+        image_files = [f for f in os.listdir(image_folder) if f.endswith(('.jpg', '.jpeg', '.png'))]
         era = request.form.get("selected_era")
         country = request.form.get("selected_country")
         image = generateImage(country, era, "Best-Mythology-Art.jpg")
