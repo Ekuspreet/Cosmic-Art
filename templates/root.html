@@ -78,10 +78,13 @@
     {% endblock navbar%}
     <div class="content">
     {% block content %}
-    <br><br><br>
-    <div class="text">
-        Presenting the <br> Space Time <br> Continuum of Art!
-    </div>
+        <div class="hero">
+            <img src=" {{ url_for('static', filename = 'public/heroimg.jpg') }}  " alt="">
+            <div class="hero-text">
+                Presenting The <span>Space Time</span> Continuum Of Art
+            </div>
+            <a href="{{ url_for('signup') }}"><button>Join The Experience</button></a>
+        </div>
     {% endblock content%}
 </div>
     {% endblock body%}
