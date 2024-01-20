@@ -95,6 +95,9 @@ def experience():
     
     return render_template('experience-slide.html', area=country, era=era, url_list = url_list)
 
+
+
+
 #-----------------------------------
 # Running the app
 #-----------------------------------
