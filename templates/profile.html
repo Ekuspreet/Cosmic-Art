@@ -1,0 +1,31 @@
+{% extends 'root.html' %}
+{% block styles %}
+    <link rel="stylesheet" href=" {{ url_for( 'static' , filename = 'styles/globals.css' ) }} ">
+    <link rel="stylesheet" href=" {{ url_for( 'static' , filename = 'styles/profile.css' ) }} ">
+    <link rel="stylesheet" href=" {{ url_for( 'static' , filename = 'styles/login.css' ) }} ">
+        
+    {% endblock styles %}
+    
+    {% block navigation %}
+    <heading>Welcome Back {{ username }} !</heading> 
+    {% endblock %}
+    {% block actions %}
+
+    <a>
+        <button >
+           Buy Tickets  |&#x1F3AB; {{ tickets }}
+        </button>
+    </a> 
+
+    
+    <a href="{{ url_for('landing')}}">
+        <button id = "backbtn">
+           LogOut
+        </button>
+    </a> 
+
+    {% endblock actions%}
+
+    {% block content %}
+        
+    {% endblock %}

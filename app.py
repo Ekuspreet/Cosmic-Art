@@ -68,7 +68,9 @@ def homepage(username,email = "guestmail"):
     user = User.query.filter_by(name = username, email = email).first()
     if not user:
         return 'User {username} does not exist!!'
-    return f'Username = {username}'
+    return render_template('profile.html', username = username, tickets = 3)
+
+
 #-----------------------------------
 # Running the app
 #-----------------------------------
