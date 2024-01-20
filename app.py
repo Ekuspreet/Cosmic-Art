@@ -5,6 +5,7 @@
 
 from flask import Flask,render_template,redirect,url_for,request, flash
 from api.imageGenerator import generateImage
+from api.uploadImage import upload_to_imgbb
 from flask_sqlalchemy import SQLAlchemy
 import os
 #-----------------------------------
@@ -80,6 +81,7 @@ def homepage(username,id = "guestid"):
 def experience():
     country = None
     era = None
+    url_list = []
     
     if request.method == "POST":
         era = request.form.get("selected_era")
@@ -89,8 +91,13 @@ def experience():
         for i, image_name in enumerate(image_files):
             image = generateImage(country, era, image_name)
             image.save(f"static/Images/Generated/{i}.jpg")
+            imgbb_url = upload_to_imgbb(f"static/Images/Generated/{i}.jpg")
+            url_list.append(imgbb_url)
     
-    return render_template('experience-slide.html', area=country, era=era)
+    return render_template('experience-slide.html', area=country, era=era, url_list = url_list)
+
+
+
 
 #-----------------------------------
 # Running the app
