@@ -12,6 +12,7 @@
 {% block actions %}
 
 <a>
+    <form action="/create-checkout-session"></form>
     <button>
         Buy Tokens |&#x1FA99; {{ tickets }}
     </button>
@@ -174,14 +175,20 @@
 
         <heading>Customise Your Experience</heading>
 
-        <form action='/experience' method="POST" class="custom-form">
+        <form action='/experience' method="POST" class="custom-form" id = "experienceselector">
             <div class="country">
                 <heading>Select <span>Place</span> </heading>
                 <div class="countries">
                     {% for country in countries %}
                         <label class="radio-container">
                             <input type="radio" name="selected_country" value="{{ country }}">
-                            <span>{{ country }}</span>
+                            <span>
+                            
+                                {{ country }}
+                            <img src=" {{ locs[loop.index-1] }} " alt="" width="500">
+                                
+                            </span>
+
                         </label>
                     {% endfor %}
                 </div>
@@ -193,12 +200,14 @@
                     {% for era in eras %}
                         <label class="radio-container">
                             <input type="radio" name="selected_era" value="{{ era }}">
-                            <span>{{ era }}</span>
+                            <span>{{ era }} {{ index }}</span>
                         </label>
                     {% endfor %}
                 </div>
             </div>
-        </form>
+
+
+       
     </div>
 
     
@@ -209,7 +218,8 @@
 
 <div class="start">
     <!-- <img src="  {{ url_for('static', filename = 'public/startbg.jpg') }} " alt=""> -->
-    <button>
+    <input type="submit" style="display: none;">
+    <button  onclick="document.getElementById('experienceselector').submit();">
         <fch> Start Experience Now</fch> <sch> <br>Cost : 3 &#x1FA99;  </sch> 
         <div class="icon-1">
           <svg
@@ -270,7 +280,7 @@
         </div>
       </button>
       
-   
+    </form>
     <!-- Start -->
 </div>
 
