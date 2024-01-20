@@ -60,7 +60,9 @@ def signup():
         new_user = User(email=email, name=name, password=password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for('homepage', username = name, email = email))
+        id = User.query.filter_by(email = email, password = password ).first().id
+
+        return redirect(url_for('homepage', username = name, id = id))
     return render_template('signup.html')
 
 @app.route("/profile/<username>,id=<id>")
