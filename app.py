@@ -3,7 +3,7 @@
 # Import 
 #-----------------------------------
 from flask import Flask,render_template,redirect,url_for,request, flash
-
+from api.imageGenerator import generateImage
 from flask_sqlalchemy import SQLAlchemy
 
 #-----------------------------------
@@ -73,9 +73,15 @@ def homepage(username,id = "guestid"):
     era = ['Ancient', 'Medieval', 'Renaissance', 'Futuristic', 'Contemporary', 'Modern']
     return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era)
 
-@app.route("/experience")
+@app.route("/experience", methods=["GET","POST"])
 def experience():
-    pass
+    if request.method == "POST":
+        era = request.form.get("selected_era")
+        country = request.form.get("selected_country")
+        image = generateImage(country, era, "Best-Mythology-Art.avif")
+        image.save("static/Images/Generated/harnoor.jpg")
+    
+    return render_template('image.html')
 
 #-----------------------------------
 # Running the app

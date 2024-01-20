@@ -227,20 +227,16 @@
               </svg>
             </div>
           </button>
-          <form action='/experience' method="POST">
+        <form action='/experience' method="POST">
             <h2>Select Country:</h2>
-            <select name="selected_country">
-                {% for country in countries %}
-                    <option value="{{ country }}">{{ country }}</option>
-                {% endfor %}
-            </select>
+            {% for country in countries %}
+                <input type="radio" name="selected_country" value="{{ country }}"> {{ country }}
+            {% endfor %}
     
             <h2>Select Era:</h2>
-            <select name="selected_era">
-                {% for era in eras %}
-                    <option value="{{ era }}">{{ era }}</option>
-                {% endfor %}
-            </select>
+            {% for era in eras %}
+                <input type="radio" name="selected_era" value="{{ era }}"> {{ era }}
+            {% endfor %}
     
             <br>
             <input type="submit" value="Submit">
