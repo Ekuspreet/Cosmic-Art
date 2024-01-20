@@ -4,12 +4,9 @@
 #-----------------------------------
 
 from flask import Flask,render_template,redirect,url_for,request, flash
+from api.imageGenerator import generateImage
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.exc import IntegrityError
-
-
-
-
+import os
 #-----------------------------------
 # Initialization 
 #-----------------------------------
@@ -46,7 +43,7 @@ def login():
         user = User.query.filter_by(email = email, password = password )
         if not user:
             return render_template('login.html',message = "Incorrect Email or Password", type = 'error')
-        return redirect(url_for('homepage',username = user.name,email = user.email))
+        return redirect(url_for('homepage',username = user.name,id = user.id))
             
     return render_template('login.html')
 
@@ -61,23 +58,39 @@ def signup():
             return render_template('signup.html', message = "Passwords Do Not Match!", type = "error")
         if User.query.filter_by(email= email).first():
             return render_template('signup.html', message = "Email already registered!", type = "error")
-        new_user = User.query.filter_by(email= email, name=name, password=password)
-        try:
-            db.session.add(new_user)
-            db.session.commit()
-            return redirect(url_for('homepage', username=name, email=email))
-        except IntegrityError:
-            db.session.rollback()
-            return render_template('signup.html', message="Email already registered!", type="error")
+        new_user = User(email=email, name=name, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        id = User.query.filter_by(email = email, password = password ).first().id
+
+        return redirect(url_for('homepage', username = name, id = id))
     return render_template('signup.html')
 
-@app.route("/profile/<username>/<email>")
-def homepage(username,email = "guestmail"):
-    user =User.query.filter_by(name = username, email = email).first()
+@app.route("/profile/<username>,id=<id>")
+def homepage(username,id = "guestid"):
+    user = User.query.filter_by(name = username, id = id).first()
     if not user:
         return 'User {username} does not exist!!'
-    return render_template('profile.html', username = username, tickets = 3)
+    countries = ['France', 'Greece', 'India', 'Japan', 'Russia']
+    era = ['Ancient', 'Medieval', 'Renaissance', 'Futuristic', 'Contemporary', 'Modern']
+    return render_template('profile.html', username = username, tickets = 10, countries = countries, eras = era)
 
+
+@app.route("/experience", methods=["GET","POST"])
+def experience():
+    country = None
+    era = None
+    
+    if request.method == "POST":
+        era = request.form.get("selected_era")
+        country = request.form.get("selected_country")
+        image_folder = f'static\images\countries\{country}'  # Update with the path to your image folder
+        image_files = [f for f in os.listdir(image_folder) if f.endswith(('.jpg', '.jpeg', '.png'))]
+        for i, image_name in enumerate(image_files):
+            image = generateImage(country, era, image_name)
+            image.save(f"static/Images/Generated/{i}.jpg")
+    
+    return render_template('experience-slide.html', area=country, era=era)
 
 #-----------------------------------
 # Running the app
