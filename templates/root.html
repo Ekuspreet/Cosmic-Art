@@ -89,9 +89,48 @@
             </a>
             <img src=" {{ url_for('static', filename = 'public/heroimg.jpg') }} " alt="">
         </div>
+        
     {% endblock content%}
 </div>
+<div class="content-section">
+    <div class="section-title">
+        <heading>Featured Artworks</heading>
+    </div>
+    <div class="section-content">
+        <p>Discover our curated collection of featured artworks. Explore the creativity and uniqueness of each piece.</p>
+        <div class="image-grid">
+            <img src="{{ url_for('static', filename='public/coll1.jpg') }}" alt="">
+            
+        </div>
+        <a href="#"><button>View Collection</button></a>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-title">
+        <heading>Artists Showcase</heading>
+    </div>
+    <div class="section-content">
+        <p>Meet the talented artists behind the masterpieces. Learn about their inspirations and artistic journeys.</p>
+        <div class="image-grid"> 
+            <img src="{{ url_for('static', filename='public/coll3.jpg') }}" alt="">
+        </div>    
+        <a href="#"><br><button>Explore Artists</button></a>
+    </div>
+</div>
+
+<div class="content-section">
+    <div class="section-title">
+        <heading>Upcoming Events</heading>
+    </div>
+    <div class="section-content">
+        <p>Stay updated on our upcoming art events and exhibitions. Join us for a memorable art experience.</p>
+        <a href="#"><button>Check Events</button></a>
+    </div>
+</div>
     {% endblock body%}
+
+   
 </body>
 
 

@@ -221,3 +221,79 @@ input::placeholder{
     font-family: var(--script);
 }
 
+/* sections.css */
+
+.content-section {
+    margin: 2em;
+    padding: 1em;
+    background-color: var(--glass-white);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-section .section-title {
+    margin-bottom: 1em;
+    font-size: x-large;
+}
+
+.content-section .section-title heading {
+    color: var(--colour);
+    font-size: xxx-large;
+}
+
+.content-section .section-content {
+    font-family: var(--content);
+    font-size: xx-large;
+}
+
+.content-section button {
+    border-radius: 10px;
+    font-size: var(--xl);
+    padding: 7px 21px;
+    font-weight: 600;
+    border: 2px solid var(--colour);
+    cursor: pointer;
+    color: var(--colour);
+    transition: color, background-color 0.4s ease;
+}
+
+.content-section button:hover {
+    background-color: var(--colour);
+    color: var(--white);
+}
+
+content-section .image-grid {
+    height: 25em;
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0.5em 2em;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+}
+
+.content-section .image-grid img {
+    flex-direction: column;
+    width: 70%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+}
+
+.content-section button {
+    border-radius: 10px;
+    font-size: var(--xl);
+    padding: 7px 21px;
+    font-weight: 600;
+    border: 2px solid var(--colour);
+    cursor: pointer;
+    color: var(--colour);
+    transition: color, background-color 0.4s ease;
+}
+
+.content-section button:hover {
+    background-color: var(--colour);
+    color: var(--white);
+}
